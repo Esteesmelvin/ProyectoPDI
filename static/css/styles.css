@@ -1,0 +1,146 @@
+/* Estilos básicos del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Contenedor principal */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Ajuste de ancho para dispositivos móviles */
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+/* Título */
+h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del botón de carga */
+.upload-container {
+    margin: 20px 0;
+}
+
+/* Estilo del botón de cargar imagen */
+.upload-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    width: 100%; /* Botón de ancho completo para mejorar la usabilidad en móviles */
+    max-width: 300px; /* Ancho máximo para dispositivos grandes */
+    box-sizing: border-box;
+}
+
+.upload-button:hover {
+    background-color: #777777;
+}
+
+/* Vista previa de la imagen */
+.image-preview {
+    margin-top: 20px;
+}
+
+#preview {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Estilo para el botón de Avanzar y los botones de "Reintentar Foto" y "Avanzar" después del procesamiento */
+#processButton,
+.retry-button,
+.advance-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/* Botón de "Reintentar Foto" */
+.retry-button {
+    background-color: #000000;
+    color: white;
+}
+
+.retry-button:hover {
+    background-color: #777777;
+}
+
+/* Botón de "Avanzar" */
+.advance-button, #processButton {
+    background-color: #000000;
+    color: white;
+}
+
+.advance-button:hover, #processButton:hover {
+    background-color: #218838;
+}
+
+/* Pantalla completa para el cargador */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Estilo del spinner */
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Texto adicional debajo del botón de cargar imagen */
+p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Enlace en el texto adicional */
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

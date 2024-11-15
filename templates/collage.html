@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage de Imágenes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Estilos para el contenedor y el canvas */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: url("{{ url_for('static', filename='images/bg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+            max-width: 1080px;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .welcome-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #collageCanvas {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 1;
+            border: 2px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .count {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            font-weight: bold;
+        }
+
+        /* Estilos para el botón */
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #777777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="welcome-title">Album Release</h2>
+        <p>Haz dejado tu huella junto a <span id="count" class="count"></span> fanáticos más.</p>
+        
+        <!-- Canvas para el collage -->
+        <canvas id="collageCanvas" data-background-src="{{ url_for('static', filename='images/album.jpg') }}"></canvas>
+        
+        <!-- Imágenes ocultas para cargar en el canvas -->
+        <div id="imageContainer" style="display: none;">
+            {% for image_path in image_paths %}
+                <img src="{{ url_for('static', filename='processed_images/' + image_path) }}" alt="Imagen procesada" class="collage-image">
+            {% endfor %}
+        </div>
+
+        <!-- Botón para volver a la página de inicio -->
+        <a href="{{ url_for('index') }}" class="back-button">Volver a Inicio</a>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/collage.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const targetCount = {{ image_count }};
+            const countElement = document.getElementById("count");
+            let currentCount = 0;
+
+            function animateCount() {
+                if (currentCount <= targetCount) {
+                    countElement.textContent = currentCount;
+                    currentCount++;
+                    setTimeout(animateCount, 150); // Velocidad de animación
+                } else {
+                    countElement.style.opacity = 1; // Aparece con el fade-in
+                }
+            }
+
+            // Comienza la animación de conteo
+            countElement.style.opacity = 1;
+            animateCount();
+        });
+    </script>
+</body>
+</html>

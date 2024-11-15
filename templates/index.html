@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Release</title>
+    <!-- Vincular el archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/bg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Deja tu huella en el próximo Album de Carti</h2>
+        <div class="upload-container">
+            <label for="imageUpload" class="upload-button">Cargar imagen</label>
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="uploadImage(event)">
+        </div>
+        
+        <div class="image-preview">
+            <img id="preview" src="" alt="Vista previa" style="display: none;">
+        </div>
+
+        <!-- Botón inicial de "Avanzar" para procesar la imagen -->
+        <button id="processButton" style="display: none;" onclick="removeBackground()">Avanzar</button>
+
+        <!-- Botones de "Reintentar Foto" y "Avanzar" después del procesamiento -->
+        <div id="postProcessButtons" style="display: none;">
+            <button onclick="retryImage()" class="retry-button">Reintentar</button>
+            <button onclick="advance()" class="advance-button">Avanzar</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de carga con animación -->
+    <div id="loadingScreen" class="loading-screen" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
